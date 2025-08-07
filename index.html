@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ify Makes And More</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 25%, #4c1d95 50%, #7c2d12 75%, #dc2626 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 35px 70px -12px rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+        
+        .product-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.25);
+            background: rgba(255, 255, 255, 1);
+        }
+        
+        .page {
+            display: none;
+            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+        
+        .nav-glass {
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+            box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #f97316 0%, #dc2626 100%);
+            box-shadow: 0 15px 35px -5px rgba(245, 158, 11, 0.6);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            box-shadow: 0 8px 20px -5px rgba(139, 92, 246, 0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
+            box-shadow: 0 12px 30px -5px rgba(139, 92, 246, 0.6);
+            transform: translateY(-2px);
+        }
+        
+        .floating-elements::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-elements::after {
+            content: '';
+            position: absolute;
+            bottom: 20%;
+            right: 15%;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #f59e0b 0%, #ec4899 50%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .category-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #f59e0b 0%, #ec4899 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .category-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 35px -5px rgba(245, 158, 11, 0.5);
+        }
+        
+        .slider-container {
+            overflow: hidden;
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .slider-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .slider-item {
+            min-width: 350px;
+            margin-right: 30px;
+            flex-shrink: 0;
+        }
+        
+        .quantity-control {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .quantity-btn {
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        
+        .quantity-btn:hover {
+            background: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
+            transform: scale(1.05);
+        }
+        
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+        
+        .section-title {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        .price-tag {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 15px -3px rgba(16, 185, 129, 0.4);
+        }
+        
+        .status-available {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        .status-unavailable {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        .form-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 16px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #f59e0b;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+            outline: none;
+        }
+        
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .payment-option {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .payment-option:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .bank-details {
+            background: rgba(59, 130, 246, 0.1);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 16px;
+        }
+        
+        .copy-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        
+        .copy-btn:hover {
+            background: #2563eb;
+            transform: scale(1.05);
+        }
+        
+        .success-modal {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        
+        .modal-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        @media (max-width: 768px) {
+            .slider-item {
+                min-width: 280px;
+                margin-right: 20px;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen relative floating-elements">
+    <!-- Navigation -->
+    <nav class="nav-glass sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <h1 class="text-3xl font-black text-white cursor-pointer hover:text-yellow-300 transition-colors duration-300" onclick="showPage('home')">
+                        ✨ Ify Makes And More
+                    </h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <button onclick="showPage('home')" class="text-white hover:text-yellow-300 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:bg-white/10">Home</button>
+                        <button onclick="showPage('about')" class="text-white hover:text-yellow-300 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:bg-white/10">About</button>
+                        <button onclick="showPage('chinzobo')" class="text-white hover:text-yellow-300 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:bg-white/10">Food & Drinks</button>
+                        <button onclick="showPage('perfumes')" class="text-white hover:text-yellow-300 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:bg-white/10">Perfumes</button>
+                        <button onclick="showPage('clothing')" class="text-white hover:text-yellow-300 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:bg-white/10">Fashion</button>
+                        <button onclick="showPage('shortlet')" class="text-white hover:text-yellow-300 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:bg-white/10">Accommodation</button>
+                        <button onclick="showPage('order')" class="btn-primary text-white px-6 py-2 rounded-full text-sm font-bold">Order Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <!-- Hero Section -->
+            <div class="text-center mb-24">
+                <h2 class="hero-title text-white mb-8 text-gradient">Welcome to Ify Makes And More</h2>
+                <p class="text-2xl text-white/90 mb-12 max-w-4xl mx-auto font-medium leading-relaxed">Your premium destination for delicious treats, luxury fragrances, stylish fashion, and comfortable stays</p>
+                <button onclick="showPage('order')" class="btn-primary text-white px-16 py-6 rounded-full text-xl font-bold shadow-2xl flex items-center justify-center mx-auto">
+                    <img src="images/cart-removebg-preview.png" alt="Shopping Cart Icon" class="w-6 h-6 mr-3 rounded">
+                    Show Cart
+                </button>
+            </div>
+
+            <!-- Categories Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="glass-card rounded-3xl p-8 cursor-pointer text-center" onclick="showPage('chinzobo')">
+                    <div class="category-icon">
+                        <img src="images/ChatGPT Image Aug 6, 2025, 12_24_02 AM.png" alt="Food & Drinks Icon" class="w-full h-full object-cover rounded-2xl">
+                    </div>
+                    <h3 class="card-title text-white mb-4">Snacks & Drinks</h3>
+                    <p class="text-white/80 text-lg leading-relaxed mb-6">Delicious homemade chin chin and refreshing zobo drinks crafted with love</p>
+                    <div class="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-6 py-2 rounded-full text-sm font-bold">
+                        Explore Menu →
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-3xl p-8 cursor-pointer text-center" onclick="showPage('perfumes')">
+                    <div class="category-icon">
+                        <img src="images/oud touch.png" alt="Perfumes Icon" class="w-full h-full object-cover rounded-2xl">
+                    </div>
+                    <h3 class="card-title text-white mb-4">Premium Perfumes</h3>
+                    <p class="text-white/80 text-lg leading-relaxed mb-6">Luxury fragrances and signature scents for every occasion and personality</p>
+                    <div class="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-6 py-2 rounded-full text-sm font-bold">
+                        Browse Collection →
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-3xl p-8 cursor-pointer text-center" onclick="showPage('clothing')">
+                    <div class="category-icon">
+                        <img src="images/men suits.png" alt="Fashion Icon" class="w-full h-full object-cover rounded-2xl">
+                    </div>
+                    <h3 class="card-title text-white mb-4">Men's Fashion</h3>
+                    <p class="text-white/80 text-lg leading-relaxed mb-6">Stylish clothing, shoes, and accessories for the modern gentleman</p>
+                    <div class="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-6 py-2 rounded-full text-sm font-bold">
+                        Shop Fashion →
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-3xl p-8 cursor-pointer text-center" onclick="showPage('shortlet')">
+                    <div class="category-icon">
+                        <img src="images/house.png" alt="Accommodation Icon" class="w-full h-full object-cover rounded-2xl">
+                    </div>
+                    <h3 class="card-title text-white mb-4">Accommodation</h3>
+                    <p class="text-white/80 text-lg leading-relaxed mb-6">Comfortable and luxurious short-term accommodation options</p>
+                    <div class="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-6 py-2 rounded-full text-sm font-bold">
+                        Book Stay →
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="text-center mb-20">
+                <h2 class="section-title text-white mb-8">About Ify Makes And More</h2>
+                <p class="text-xl text-white/90 max-w-3xl mx-auto font-medium leading-relaxed">Discover the story behind our passion for quality products and exceptional service</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+                <div class="glass-card rounded-3xl p-10">
+                    <h3 class="text-3xl font-bold text-white mb-8">Our Story</h3>
+                    <p class="text-white/90 text-lg leading-relaxed mb-6">
+                        Founded with a passion for bringing quality and joy to everyday life, Ify Makes And More started as a small venture dedicated to creating delicious homemade treats and has grown into a comprehensive lifestyle brand.
+                    </p>
+                    <p class="text-white/90 text-lg leading-relaxed">
+                        From our signature chin chin and refreshing zobo drinks to premium perfumes, stylish men's fashion, and comfortable accommodation, we're committed to excellence in everything we do.
+                    </p>
+                </div>
+                <div class="glass-card rounded-3xl p-10 text-center">
+                    <div class="w-32 h-32 mx-auto mb-8 rounded-full overflow-hidden">
+                        <img src="https://via.placeholder.com/128x128/F59E0B/FFFFFF?text=Chef" alt="Chef Image" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-6">Quality First</h4>
+                    <p class="text-white/90 text-lg leading-relaxed">Every product is crafted with care, attention to detail, and a commitment to excellence</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card rounded-3xl p-8 text-center">
+                    <div class="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden">
+                        <img src="images/mission-removebg-preview.png" alt="Mission Icon" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-4">Our Mission</h4>
+                    <p class="text-white/90 leading-relaxed">To provide exceptional products and services that bring joy and satisfaction to our customers' lives.</p>
+                </div>
+                <div class="glass-card rounded-3xl p-8 text-center">
+                    <div class="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden">
+                        <img src="images/values-removebg-preview.png" alt="Values Icon" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-4">Our Values</h4>
+                    <p class="text-white/90 leading-relaxed">Quality, integrity, customer satisfaction, and continuous innovation in everything we do.</p>
+                </div>
+                <div class="glass-card rounded-3xl p-8 text-center">
+                    <div class="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden">
+                        <img src="images/vision-removebg-preview.png" alt="Vision Icon" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-4">Our Vision</h4>
+                    <p class="text-white/90 leading-relaxed">To become the leading lifestyle brand known for quality products and exceptional customer experience.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chin Chin & Zobo Page -->
+    <div id="chinzobo" class="page">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-white mb-6 flex items-center justify-center gap-4">
+                    <img src="images/small.png" alt="Food Icon" class="w-12 h-12 rounded-lg">
+                    Food & Drinks
+                    <img src="images/zobo.jpg" alt="Drinks Icon" class="w-12 h-12 rounded-lg">
+                </h2>
+                <p class="text-xl text-white/90 font-medium">Delicious homemade treats and refreshing drinks made with love</p>
+            </div>
+            
+            <!-- Slider Controls -->
+            <div class="flex justify-center mb-12">
+                <div class="glass-card rounded-2xl p-2 flex">
+                    <button onclick="slideProducts('chinzobo', -1)" class="btn-secondary text-white px-8 py-4 rounded-xl font-semibold mr-2">‹ Previous</button>
+                    <button onclick="slideProducts('chinzobo', 1)" class="btn-secondary text-white px-8 py-4 rounded-xl font-semibold">Next ›</button>
+                </div>
+            </div>
+            
+            <div class="slider-container" id="chinzobo-slider">
+                <div class="slider-track" id="chinzobo-track">
+                    <div class="slider-item">
+                        <div class="product-card rounded-3xl p-8 shadow-2xl">
+                            <div class="w-full h-64 bg-gradient-to-br from-yellow-200 to-orange-300 rounded-2xl mb-8 p-4 flex items-center justify-center">
+                                <img src="images/small.png" alt="Chin Chin Small" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <h3 class="card-title text-gray-800 mb-4 text-center">Chin Chin - Small Pack</h3>
+                            <div class="text-center mb-6">
+                                <span class="price-tag">₦1,000</span>
+                            </div>
+                            <div class="quantity-control flex items-center justify-center mb-8">
+                                <button onclick="changeQuantity('chinSmall', -1)" class="quantity-btn rounded-l-xl">-</button>
+                                <span id="chinSmall" class="px-8 py-3 min-w-20 text-center font-bold text-xl bg-white">0</span>
+                                <button onclick="changeQuantity('chinSmall', 1)" class="quantity-btn rounded-r-xl">+</button>
+                            </div>
+                            <button onclick="addToCartWithQuantity('Chin Chin - Small', 1000, 'chinSmall')" class="w-full btn-secondary text-white py-4 rounded-2xl font-bold text-lg">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="slider-item">
+                        <div class="product-card rounded-3xl p-8 shadow-2xl">
+                            <div class="w-full h-64 bg-gradient-to-br from-yellow-200 to-orange-300 rounded-2xl mb-8 p-4 flex items-center justify-center">
+                                <img src="images/medium.png" alt="Chin Chin Medium" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <h3 class="card-title text-gray-800 mb-4 text-center">Chin Chin - Medium Pack</h3>
+                            <div class="text-center mb-6">
+                                <span class="price-tag">₦1,800</span>
+                            </div>
+                            <div class="quantity-control flex items-center justify-center mb-8">
+                                <button onclick="changeQuantity('chinMedium', -1)" class="quantity-btn rounded-l-xl">-</button>
+                                <span id="chinMedium" class="px-8 py-3 min-w-20 text-center font-bold text-xl bg-white">0</span>
+                                <button onclick="changeQuantity('chinMedium', 1)" class="quantity-btn rounded-r-xl">+</button>
+                            </div>
+                            <button onclick="addToCartWithQuantity('Chin Chin - Medium', 1800, 'chinMedium')" class="w-full btn-secondary text-white py-4 rounded-2xl font-bold text-lg">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="slider-item">
+                        <div class="product-card rounded-3xl p-8 shadow-2xl">
+                            <div class="w-full h-64 bg-gradient-to-br from-yellow-200 to-orange-300 rounded-2xl mb-8 p-4 flex items-center justify-center">
+                                <img src="images/big.png" alt="Chin Chin Large" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <h3 class="card-title text-gray-800 mb-4 text-center">Chin Chin - Large Pack</h3>
+                            <div class="text-center mb-6">
+                                <span class="price-tag">₦3,000</span>
+                            </div>
+                            <div class="quantity-control flex items-center justify-center mb-8">
+                                <button onclick="changeQuantity('chinLarge', -1)" class="quantity-btn rounded-l-xl">-</button>
+                                <span id="chinLarge" class="px-8 py-3 min-w-20 text-center font-bold text-xl bg-white">0</span>
+                                <button onclick="changeQuantity('chinLarge', 1)" class="quantity-btn rounded-r-xl">+</button>
+                            </div>
+                            <button onclick="addToCartWithQuantity('Chin Chin - Large', 3000, 'chinLarge')" class="w-full btn-secondary text-white py-4 rounded-2xl font-bold text-lg">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="slider-item">
+                        <div class="product-card rounded-3xl p-8 shadow-2xl">
+                            <div class="w-full h-64 bg-gradient-to-br from-red-200 to-purple-300 rounded-2xl mb-8 p-4 flex items-center justify-center">
+                                <img src="images/zobo.jpg" alt="Zobo Drink" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <h3 class="card-title text-gray-800 mb-4 text-center">Fresh Zobo Drink</h3>
+                            <div class="text-center mb-6">
+                                <span class="price-tag">₦500</span>
+                            </div>
+                            <div class="quantity-control flex items-center justify-center mb-8">
+                                <button onclick="changeQuantity('zobo', -1)" class="quantity-btn rounded-l-xl">-</button>
+                                <span id="zobo" class="px-8 py-3 min-w-20 text-center font-bold text-xl bg-white">0</span>
+                                <button onclick="changeQuantity('zobo', 1)" class="quantity-btn rounded-r-xl">+</button>
+                            </div>
+                            <button onclick="addToCartWithQuantity('Zobo Drink', 500, 'zobo')" class="w-full btn-secondary text-white py-4 rounded-2xl font-bold text-lg">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Perfumes Page -->
+    <div id="perfumes" class="page">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-white mb-6 flex items-center justify-center gap-4">
+                    <img src="images/oud touch.png" alt="Perfume" class="w-12 h-12 rounded-lg">
+                    Premium Perfumes
+                    <img src="images/Afnan Supremacy.png" alt="Perfume" class="w-12 h-12 rounded-lg">
+                </h2>
+                <p class="text-xl text-white/90 font-medium">Luxury fragrances and signature scents for every occasion</p>
+            </div>
+            
+            <!-- Slider Controls -->
+            <div class="flex justify-center mb-12">
+                <div class="glass-card rounded-2xl p-2 flex">
+                    <button onclick="slideProducts('perfumes', -1)" class="btn-secondary text-white px-8 py-4 rounded-xl font-semibold mr-2">‹ Previous</button>
+                    <button onclick="slideProducts('perfumes', 1)" class="btn-secondary text-white px-8 py-4 rounded-xl font-semibold">Next ›</button>
+                </div>
+            </div>
+            
+            <div class="slider-container" id="perfumes-slider">
+                <div class="slider-track" id="perfumes-track">
+                    <div class="slider-item">
+                        <div class="product-card rounded-3xl p-8 shadow-2xl">
+                            <div class="w-full h-64 bg-gradient-to-br from-pink-200 to-purple-300 rounded-2xl mb-8 p-4 flex items-center justify-center">
+                                <img src="images/oud touch.png" alt="Oud touch 100ml" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <h3 class="card-title text-gray-800 mb-4 text-center">Oud Touch 100ml</h3>
+                            <div class="text-center mb-6">
+                                <span class="price-tag">₦37,500</span>
+                            </div>
+                            <div class="quantity-control flex items-center justify-center mb-8">
+                                <button onclick="changeQuantity('floralEssence', -1)" class="quantity-btn rounded-l-xl">-</button>
+                                <span id="floralEssence" class="px-8 py-3 min-w-20 text-center font-bold text-xl bg-white">0</span>
+                                <button onclick="changeQuantity('floralEssence', 1)" class="quantity-btn rounded-r-xl">+</button>
+                            </div>
+                            <button onclick="addToCartWithQuantity('Floral Essence Perfume', 8500, 'floralEssence')" class="w-full btn-secondary text-white py-4 rounded-2xl font-bold text-lg">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="slider-item">
+                        <div class="product-card rounded-3xl p-8 shadow-2xl">
+                            <div class="w-full h-64 bg-gradient-to-br from-blue-200 to-indigo-300 rounded-2xl mb-8 p-4 flex items-center justify-center">
+                                <img src="images/gio gio.png" alt="GioGio Black" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <h3 class="card-title text-gray-800 mb-4 text-center">GioGio Black 100ml</h3>
+                            <div class="text-center mb-6">
+                                <span class="price-tag">₦29,500</span>
+                            </div>
+                            <div class="quantity-control flex items-center justify-center mb-8">
+                                <button onclick="changeQuantity('oceanBreeze', -1)" class="quantity-btn rounded-l-xl">-</button>
+                                <span id="oceanBreeze" class="px-8 py-3 min-w-20 text-center font-bold text-xl bg-white">0</span>
+                                <button onclick="changeQuantity('oceanBreeze', 1)" class="quantity-btn rounded-r-xl">+</button>
+                            </div>
+                            <button onclick="addToCartWithQuantity('Ocean Breeze Perfume', 7200, 'oceanBreeze')" class="w-full btn-secondary text-white py-4 rounded-2xl font-bold text-lg">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="slider-item">
+                        <div class="product-card rounded-3xl p-8 shadow-2xl">
+                            <div class="w-full h-64 bg-gradient-to-br from-amber-200 to-orange-300 rounded-2xl mb-8 p-4 flex items-center justify-center">
+                                <img src="images/Afnan Supremacy.png" alt="Afnan Supremacy Perfume 100ml" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <h3 class="card-title text-gray-800 mb-4 text-center">Afnan Supremacy 100ml</h3>
+                            <div class="text-center mb-6">
+                                <span class="price-tag">₦65,000</span>
+                            </div>
+                            <div class="quantity-control flex items-center justify-center mb-8">
+                                <button onclick="changeQuantity('goldenLuxury', -1)" class="quantity-btn rounded-l-xl">-</button>
+                                <span id="goldenLuxury" class="px-8 py-3 min-w-20 text-center font-bold text-xl bg-white">0</span>
+                                <button onclick="changeQuantity('goldenLuxury', 1)" class="quantity-btn rounded-r-xl">+</button>
+                            </div>
+                            <button onclick="addToCartWithQuantity('Golden Luxury Perfume', 12000, 'goldenLuxury')" class="w-full btn-secondary text-white py-4 rounded-2xl font-bold text-lg">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Men's Clothing Page -->
+    <div id="clothing" class="page">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-white mb-6 flex items-center justify-center gap-4">
+                    <img src="images/men suits.png" alt="Shirt Icon" class="w-12 h-12 rounded-lg">
+                    Men's Fashion
+                    <img src="images/men suits.png" alt="Shoe Icon" class="w-12 h-12 rounded-lg">
+                </h2>
+                <p class="text-xl text-white/90 font-medium">Stylish clothing, shoes, and accessories for the modern gentleman</p>
+            </div>
+            
+            <!-- Slider Controls -->
+            <div class="flex justify-center mb-12">
+                <div class="glass-card rounded-2xl p-2 flex">
+                    <button onclick="slideProducts('clothing', -1)" class="btn-secondary text-white px-8 py-4 rounded-xl font-semibold mr-2">‹ Previous</button>
+                    <button onclick="slideProducts('clothing', 1)" class="btn-secondary text-white px-8 py-4 rounded-xl font-semibold">Next ›</button>
+                </div>
+            </div>
+            
+            <div class="slider-container" id="clothing-slider">
+                <div class="slider-track" id="clothing-track">
+                    <div class="slider-item">
+                        <div class="product-card rounded-3xl p-8 shadow-2xl">
+                            <div class="w-full h-64 bg-gradient-to-br from-gray-200 to-blue-300 rounded-2xl mb-8 p-4 flex items-center justify-center">
+                                <img src="https://via.placeholder.com/300x200/6B7280/FFFFFF?text=Business+Shirt" alt="Business Shirt" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <h3 class="card-title text-gray-800 mb-4 text-center">Premium Business Shirt</h3>
+                            <div class="text-center mb-6">
+                                <span class="price-tag">₦15,000</span>
+                            </div>
+                            <div class="quantity-control flex items-center justify-center mb-8">
+                                <button onclick="changeQuantity('businessShirt', -1)" class="quantity-btn rounded-l-xl">-</button>
+                                <span id="businessShirt" class="px-8 py-3 min-w-20 text-center font-bold text-xl bg-white">0</span>
+                                <button onclick="changeQuantity('businessShirt', 1)" class="quantity-btn rounded-r-xl">+</button>
+                            </div>
+                            <button onclick="addToCartWithQuantity('Business Shirt', 15000, 'businessShirt')" class="w-full btn-secondary text-white py-4 rounded-2xl font-bold text-lg">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="slider-item">
+                        <div class="product-card rounded-3xl p-8 shadow-2xl">
+                            <div class="w-full h-64 bg-gradient-to-br from-indigo-200 to-purple-300 rounded-2xl mb-8 p-4 flex items-center justify-center">
+                                <img src="https://via.placeholder.com/300x200/6366F1/FFFFFF?text=Designer+Jeans" alt="Designer Jeans" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <h3 class="card-title text-gray-800 mb-4 text-center">Designer Jeans</h3>
+                            <div class="text-center mb-6">
+                                <span class="price-tag">₦25,000</span>
+                            </div>
+                            <div class="quantity-control flex items-center justify-center mb-8">
+                                <button onclick="changeQuantity('designerJeans', -1)" class="quantity-btn rounded-l-xl">-</button>
+                                <span id="designerJeans" class="px-8 py-3 min-w-20 text-center font-bold text-xl bg-white">0</span>
+                                <button onclick="changeQuantity('designerJeans', 1)" class="quantity-btn rounded-r-xl">+</button>
+                            </div>
+                            <button onclick="addToCartWithQuantity('Designer Jeans', 25000, 'designerJeans')" class="w-full btn-secondary text-white py-4 rounded-2xl font-bold text-lg">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="slider-item">
+                        <div class="product-card rounded-3xl p-8 shadow-2xl">
+                            <div class="w-full h-64 bg-gradient-to-br from-amber-200 to-orange-300 rounded-2xl mb-8 p-4 flex items-center justify-center">
+                                <img src="https://via.placeholder.com/300x200/92400E/FFFFFF?text=Leather+Shoes" alt="Leather Shoes" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <h3 class="card-title text-gray-800 mb-4 text-center">Premium Leather Shoes</h3>
+                            <div class="text-center mb-6">
+                                <span class="price-tag">₦35,000</span>
+                            </div>
+                            <div class="quantity-control flex items-center justify-center mb-8">
+                                <button onclick="changeQuantity('leatherShoes', -1)" class="quantity-btn rounded-l-xl">-</button>
+                                <span id="leatherShoes" class="px-8 py-3 min-w-20 text-center font-bold text-xl bg-white">0</span>
+                                <button onclick="changeQuantity('leatherShoes', 1)" class="quantity-btn rounded-r-xl">+</button>
+                            </div>
+                            <button onclick="addToCartWithQuantity('Leather Shoes', 35000, 'leatherShoes')" class="w-full btn-secondary text-white py-4 rounded-2xl font-bold text-lg">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="slider-item">
+                        <div class="product-card rounded-3xl p-8 shadow-2xl">
+                            <div class="w-full h-64 bg-gradient-to-br from-green-200 to-teal-300 rounded-2xl mb-8 p-4 flex items-center justify-center">
+                                <img src="https://via.placeholder.com/300x200/10B981/FFFFFF?text=Sneakers" alt="Sneakers" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <h3 class="card-title text-gray-800 mb-4 text-center">Designer Sneakers</h3>
+                            <div class="text-center mb-6">
+                                <span class="price-tag">₦18,000</span>
+                            </div>
+                            <div class="quantity-control flex items-center justify-center mb-8">
+                                <button onclick="changeQuantity('sneakers', -1)" class="quantity-btn rounded-l-xl">-</button>
+                                <span id="sneakers" class="px-8 py-3 min-w-20 text-center font-bold text-xl bg-white">0</span>
+                                <button onclick="changeQuantity('sneakers', 1)" class="quantity-btn rounded-r-xl">+</button>
+                            </div>
+                            <button onclick="addToCartWithQuantity('Sneakers', 18000, 'sneakers')" class="w-full btn-secondary text-white py-4 rounded-2xl font-bold text-lg">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="slider-item">
+                        <div class="product-card rounded-3xl p-8 shadow-2xl">
+                            <div class="w-full h-64 bg-gradient-to-br from-red-200 to-pink-300 rounded-2xl mb-8 p-4 flex items-center justify-center">
+                                <img src="https://via.placeholder.com/300x200/EF4444/FFFFFF?text=Casual+Jacket" alt="Casual Jacket" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <h3 class="card-title text-gray-800 mb-4 text-center">Casual Jacket</h3>
+                            <div class="text-center mb-6">
+                                <span class="price-tag">₦22,000</span>
+                            </div>
+                            <div class="quantity-control flex items-center justify-center mb-8">
+                                <button onclick="changeQuantity('casualJacket', -1)" class="quantity-btn rounded-l-xl">-</button>
+                                <span id="casualJacket" class="px-8 py-3 min-w-20 text-center font-bold text-xl bg-white">0</span>
+                                <button onclick="changeQuantity('casualJacket', 1)" class="quantity-btn rounded-r-xl">+</button>
+                            </div>
+                            <button onclick="addToCartWithQuantity('Casual Jacket', 22000, 'casualJacket')" class="w-full btn-secondary text-white py-4 rounded-2xl font-bold text-lg">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Short Let Page -->
+    <div id="shortlet" class="page">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-white mb-6 flex items-center justify-center gap-4">
+                    <img src="images/house.png" alt="House Icon" class="w-12 h-12 rounded-lg">
+                    Premium Accommodation
+                    <img src="images/house.png" alt="Home Icon" class="w-12 h-12 rounded-lg">
+                </h2>
+                <p class="text-xl text-white/90 font-medium">Comfortable and luxurious short-term accommodation options</p>
+            </div>
+            
+            <!-- Slider Controls -->
+            <div class="flex justify-center mb-12">
+                <div class="glass-card rounded-2xl p-2 flex">
+                    <button onclick="slideProducts('shortlet', -1)" class="btn-secondary text-white px-8 py-4 rounded-xl font-semibold mr-2">‹ Previous</button>
+                    <button onclick="slideProducts('shortlet', 1)" class="btn-secondary text-white px-8 py-4 rounded-xl font-semibold">Next ›</button>
+                </div>
+            </div>
+            
+            <div class="slider-container" id="shortlet-slider">
+                <div class="slider-track" id="shortlet-track">
+                    <div class="slider-item">
+                        <div class="product-card rounded-3xl p-8 shadow-2xl">
+                            <div class="w-full h-64 bg-gradient-to-br from-blue-200 to-cyan-300 rounded-2xl mb-8 p-4 flex items-center justify-center">
+                                <img src="https://via.placeholder.com/300x200/0EA5E9/FFFFFF?text=Luxury+Apartment" alt="Luxury Apartment" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <h3 class="card-title text-gray-800 mb-4 text-center">Luxury Apartment</h3>
+                            <div class="text-center mb-4">
+                                <span class="status-available">✅ Available</span>
+                            </div>
+                            <div class="text-center mb-8">
+                                <span class="price-tag">₦50,000/night</span>
+                            </div>
+                            <button onclick="addToCart('Luxury Apartment (1 night)', 50000)" class="w-full btn-secondary text-white py-4 rounded-2xl font-bold text-lg">Book Now</button>
+                        </div>
+                    </div>
+
+                    <div class="slider-item">
+                        <div class="product-card rounded-3xl p-8 shadow-2xl">
+                            <div class="w-full h-64 bg-gradient-to-br from-green-200 to-emerald-300 rounded-2xl mb-8 p-4 flex items-center justify-center">
+                                <img src="https://via.placeholder.com/300x200/059669/FFFFFF?text=Cozy+Studio" alt="Cozy Studio" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <h3 class="card-title text-gray-800 mb-4 text-center">Cozy Studio</h3>
+                            <div class="text-center mb-4">
+                                <span class="status-available">✅ Available</span>
+                            </div>
+                            <div class="text-center mb-8">
+                                <span class="price-tag">₦25,000/night</span>
+                            </div>
+                            <button onclick="addToCart('Cozy Studio (1 night)', 25000)" class="w-full btn-secondary text-white py-4 rounded-2xl font-bold text-lg">Book Now</button>
+                        </div>
+                    </div>
+
+                    <div class="slider-item">
+                        <div class="product-card rounded-3xl p-8 shadow-2xl opacity-75">
+                            <div class="w-full h-64 bg-gradient-to-br from-gray-200 to-gray-400 rounded-2xl mb-8 p-4 flex items-center justify-center">
+                                <img src="https://via.placeholder.com/300x200/6B7280/FFFFFF?text=Family+House" alt="Family House" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <h3 class="card-title text-gray-800 mb-4 text-center">Family House</h3>
+                            <div class="text-center mb-4">
+                                <span class="status-unavailable">❌ Currently Booked</span>
+                            </div>
+                            <div class="text-center mb-8">
+                                <span class="text-3xl font-bold text-gray-400">₦75,000/night</span>
+                            </div>
+                            <button disabled class="w-full bg-gray-400 text-white py-4 rounded-2xl font-bold text-lg cursor-not-allowed">Currently Unavailable</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Form Page -->
+    <div id="order" class="page">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="text-center mb-12">
+                <h2 class="section-title text-white mb-6">🛒 Your Order</h2>
+                <p class="text-xl text-white/90 font-medium">Review your items and complete your purchase</p>
+            </div>
+            
+            <!-- Cart Items -->
+            <div class="glass-card rounded-3xl p-10 shadow-2xl mb-10">
+                <h3 class="text-3xl font-bold text-white mb-8">Cart Items</h3>
+                <div id="cartItems" class="space-y-6">
+                    <p class="text-white/80 text-lg">Your cart is empty. Add items from our categories!</p>
+                </div>
+                <div class="border-t border-white/20 pt-8 mt-8">
+                    <div class="flex justify-between items-center text-3xl font-bold text-white">
+                        <span>Total:</span>
+                        <span id="cartTotal" class="text-gradient">₦0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Form -->
+            <div class="glass-card rounded-3xl p-10 shadow-2xl">
+                <h3 class="text-3xl font-bold text-white mb-10">Customer Information</h3>
+                <form id="orderForm" class="space-y-8">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <label class="block text-sm font-semibold text-white mb-3">Full Name</label>
+                            <input type="text" required class="form-input w-full">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-white mb-3">Phone Number</label>
+                            <input type="tel" required class="form-input w-full">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-white mb-3">Email Address</label>
+                        <input type="email" required class="form-input w-full">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-white mb-3">Delivery Address</label>
+                        <textarea required rows="3" class="form-input w-full"></textarea>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-white mb-3">Special Instructions</label>
+                        <textarea rows="2" class="form-input w-full" placeholder="Any special requests or delivery instructions..."></textarea>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-white mb-6">Payment Method</label>
+                        <div class="space-y-6">
+                            <div class="payment-option">
+                                <div class="flex items-center mb-4">
+                                    <input type="radio" id="bankTransfer" name="paymentMethod" value="bank-transfer" required class="h-5 w-5 text-yellow-400 focus:ring-yellow-400 border-white/20" onchange="toggleBankDetails()">
+                                    <label for="bankTransfer" class="ml-4 flex items-center text-lg font-semibold text-white cursor-pointer">
+                                        <img src="https://via.placeholder.com/24x24/3B82F6/FFFFFF?text=Bank" alt="Bank Icon" class="w-6 h-6 mr-2 rounded">
+                                        Bank Transfer
+                                    </label>
+                                </div>
+                                <div id="bankDetails" class="bank-details hidden">
+                                    <p class="text-sm font-semibold text-blue-200 mb-4 flex items-center">
+                                        <img src="https://via.placeholder.com/20x20/10B981/FFFFFF?text=Card" alt="Card Icon" class="w-5 h-5 mr-2 rounded">
+                                        Bank Details:
+                                    </p>
+                                    <div class="space-y-3">
+                                        <div class="flex justify-between items-center">
+                                            <p class="text-sm text-blue-100"><strong>Bank:</strong> Monie Point</p>
+                                            <button type="button" onclick="copyToClipboard('Monie Point')" class="copy-btn">Copy</button>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <p class="text-sm text-blue-100"><strong>Account Name:</strong> Ifunanya Success Ndukwu</p>
+                                            <button type="button" onclick="copyToClipboard('Ifunanya Success Ndukwu')" class="copy-btn">Copy</button>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <p class="text-sm text-blue-100"><strong>Account Number:</strong> 9067750114</p>
+                                            <button type="button" onclick="copyToClipboard('9067750114')" class="copy-btn">Copy</button>
+                                        </div>
+                                    </div>
+                                    <p class="text-xs text-blue-200 mt-4 flex items-center">
+                                        <img src="https://via.placeholder.com/16x16/8B5CF6/FFFFFF?text=Phone" alt="Phone Icon" class="w-4 h-4 mr-2 rounded">
+                                        Please upload payment receipt below after transfer
+                                    </p>
+                                </div>
+                                
+                                <!-- Receipt Upload Section -->
+                                <div class="mt-6">
+                                    <label class="block text-sm font-semibold text-white mb-3 flex items-center">
+                                        <img src="https://via.placeholder.com/20x20/F59E0B/FFFFFF?text=Doc" alt="Document Icon" class="w-5 h-5 mr-2 rounded">
+                                        Upload Payment Receipt <span class="text-red-400">*</span>
+                                    </label>
+                                    <input type="file" id="receiptUpload" accept="image/*,.pdf" required class="form-input w-full file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-yellow-400 file:text-white hover:file:bg-yellow-500">
+                                    <p class="text-xs text-white/60 mt-2">Accepted formats: JPG, PNG, PDF (Max 5MB)</p>
+                                    <div id="receiptPreview" class="mt-4 hidden">
+                                        <div class="flex items-center p-4 bg-green-900/30 border border-green-400/30 rounded-xl">
+                                            <span class="text-green-400 mr-3">✅</span>
+                                            <span class="text-green-200 text-sm" id="receiptFileName"></span>
+                                            <button type="button" onclick="removeReceipt()" class="ml-auto text-red-400 hover:text-red-300 text-sm font-semibold">Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="payment-option">
+                                <div class="flex items-center">
+                                    <input type="radio" id="payOnDelivery" name="paymentMethod" value="pay-on-delivery" required class="h-5 w-5 text-yellow-400 focus:ring-yellow-400 border-white/20" onchange="toggleBankDetails()">
+                                    <label for="payOnDelivery" class="ml-4 block text-lg font-semibold text-white cursor-pointer">
+                                        <div class="flex items-center">
+                                            <img src="https://via.placeholder.com/24x24/10B981/FFFFFF?text=Cash" alt="Cash Icon" class="w-6 h-6 mr-2 rounded">
+                                            Pay on Delivery
+                                        </div>
+                                        <span class="block text-sm text-white/70 font-normal ml-8">Pay cash when your order arrives</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="w-full btn-primary text-white py-6 rounded-2xl text-xl font-bold shadow-2xl flex items-center justify-center">
+                        <img src="https://via.placeholder.com/24x24/FFFFFF/F59E0B?text=Rocket" alt="Rocket Icon" class="w-6 h-6 mr-3 rounded">
+                        Place Order Now
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="success-modal fixed inset-0 hidden items-center justify-center z-50">
+        <div class="modal-content p-12 max-w-md mx-4 text-center">
+            <div class="w-32 h-32 mx-auto mb-8 rounded-full overflow-hidden">
+                <img src="https://via.placeholder.com/128x128/10B981/FFFFFF?text=Success" alt="Success Icon" class="w-full h-full object-cover">
+            </div>
+            <h3 class="text-3xl font-bold text-gray-800 mb-8">Order Placed Successfully!</h3>
+            <p class="text-gray-600 mb-10 text-lg leading-relaxed">Thank you for your order. We'll contact you shortly to confirm delivery details.</p>
+            <button onclick="closeModal()" class="btn-primary text-white px-10 py-4 rounded-2xl font-bold text-lg">Close</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+        let cartTotal = 0;
+        let sliderPositions = {
+            'chinzobo': 0,
+            'perfumes': 0,
+            'clothing': 0,
+            'shortlet': 0
+        };
+
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update cart display if on order page
+            if (pageId === 'order') {
+                updateCartDisplay();
+            }
+        }
+
+        function slideProducts(category, direction) {
+            const track = document.getElementById(category + '-track');
+            const items = track.querySelectorAll('.slider-item');
+            const itemWidth = 380; // 350px + 30px margin
+            
+            sliderPositions[category] += direction * itemWidth;
+            
+            // Calculate bounds based on container width and number of items
+            const containerWidth = track.parentElement.offsetWidth;
+            const visibleItems = Math.floor(containerWidth / itemWidth);
+            const maxPosition = 0;
+            const minPosition = Math.max(-(items.length - visibleItems) * itemWidth, -(items.length - 1) * itemWidth);
+            
+            if (sliderPositions[category] > maxPosition) {
+                sliderPositions[category] = maxPosition;
+            }
+            if (sliderPositions[category] < minPosition) {
+                sliderPositions[category] = minPosition;
+            }
+            
+            track.style.transform = `translateX(${sliderPositions[category]}px)`;
+        }
+
+        function changeQuantity(elementId, change) {
+            const element = document.getElementById(elementId);
+            let currentQuantity = parseInt(element.textContent);
+            let newQuantity = currentQuantity + change;
+            
+            if (newQuantity < 0) newQuantity = 0;
+            if (newQuantity > 99) newQuantity = 99;
+            
+            element.textContent = newQuantity;
+        }
+
+        function addToCart(itemName, price) {
+            cart.push({ name: itemName, price: price, quantity: 1 });
+            cartTotal += price;
+            
+            // Show success feedback
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = '✅ Added!';
+            button.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = '';
+            }, 2000);
+        }
+
+        function addToCartWithQuantity(itemName, unitPrice, quantityElementId) {
+            const quantity = parseInt(document.getElementById(quantityElementId).textContent);
+            
+            if (quantity === 0) {
+                alert('Please select a quantity greater than 0');
+                return;
+            }
+            
+            const totalPrice = unitPrice * quantity;
+            
+            cart.push({ 
+                name: itemName, 
+                price: totalPrice, 
+                quantity: quantity,
+                unitPrice: unitPrice
+            });
+            cartTotal += totalPrice;
+            
+            // Show success feedback
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = '✅ Added!';
+            button.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = '';
+            }, 2000);
+        }
+
+        function removeFromCart(index) {
+            cartTotal -= cart[index].price;
+            cart.splice(index, 1);
+            updateCartDisplay();
+        }
+
+        function updateCartDisplay() {
+            const cartItemsDiv = document.getElementById('cartItems');
+            const cartTotalSpan = document.getElementById('cartTotal');
+            
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = '<p class="text-white/80 text-lg">Your cart is empty. Add items from our categories!</p>';
+            } else {
+                cartItemsDiv.innerHTML = cart.map((item, index) => `
+                    <div class="flex justify-between items-center p-8 bg-white/10 rounded-2xl border border-white/20">
+                        <div>
+                            <h4 class="font-bold text-white text-xl mb-2">${item.name}</h4>
+                            <p class="text-sm text-white/70 mb-1">Quantity: ${item.quantity}</p>
+                            <p class="text-yellow-400 font-bold text-xl">₦${item.price.toLocaleString()}</p>
+                        </div>
+                        <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-300 font-bold text-lg px-6 py-3 rounded-xl hover:bg-red-500/20 transition-all">Remove</button>
+                    </div>
+                `).join('');
+            }
+            
+            cartTotalSpan.textContent = `₦${cartTotal.toLocaleString()}`;
+        }
+
+        function closeModal() {
+            document.getElementById('successModal').classList.add('hidden');
+            document.getElementById('successModal').classList.remove('flex');
+        }
+
+        function toggleBankDetails() {
+            const bankTransferRadio = document.getElementById('bankTransfer');
+            const bankDetails = document.getElementById('bankDetails');
+            const receiptUpload = document.getElementById('receiptUpload');
+            
+            if (bankTransferRadio.checked) {
+                bankDetails.classList.remove('hidden');
+                bankDetails.classList.add('block');
+                receiptUpload.setAttribute('required', 'required');
+            } else {
+                bankDetails.classList.add('hidden');
+                bankDetails.classList.remove('block');
+                receiptUpload.removeAttribute('required');
+            }
+        }
+
+        function removeReceipt() {
+            const receiptUpload = document.getElementById('receiptUpload');
+            const receiptPreview = document.getElementById('receiptPreview');
+            
+            receiptUpload.value = '';
+            receiptPreview.classList.add('hidden');
+        }
+
+        // Handle receipt upload preview
+        document.getElementById('receiptUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const receiptPreview = document.getElementById('receiptPreview');
+            const receiptFileName = document.getElementById('receiptFileName');
+            
+            if (file) {
+                // Check file size (5MB limit)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('File size must be less than 5MB');
+                    e.target.value = '';
+                    return;
+                }
+                
+                receiptFileName.textContent = file.name;
+                receiptPreview.classList.remove('hidden');
+            } else {
+                receiptPreview.classList.add('hidden');
+            }
+        });
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                // Show success feedback
+                const button = event.target;
+                const originalText = button.textContent;
+                button.textContent = '✓ Copied!';
+                button.style.background = '#10b981';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '#3b82f6';
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+
+        // Handle form submission
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (cart.length === 0) {
+                alert('Please add items to your cart before placing an order.');
+                return;
+            }
+            
+            // Show success modal
+            document.getElementById('successModal').classList.remove('hidden');
+            document.getElementById('successModal').classList.add('flex');
+            
+            // Reset form and cart
+            this.reset();
+            cart = [];
+            cartTotal = 0;
+            updateCartDisplay();
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96b82809732ac95d',t:'MTc1NDU4NDIwMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
