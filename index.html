@@ -1010,24 +1010,17 @@
         // 🔧 CONFIGURATION SECTION
         // ========================================
         
-        // 📊 GOOGLE SHEETS INTEGRATION
-        // Paste your Google Apps Script Web App URL below:
-        // To get this URL:
-        // 1. Go to script.google.com
-        // 2. Open your Apps Script project
-        // 3. Click "Deploy" → "New Deployment"
-        // 4. Choose "Web app" and copy the URL
-        
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxAx-7LGqkAmDDLk-KWCWOkIgn5OiLWew6UVMbH8HkG3PPpvZ-eH8rsVQ7FOpEZfrk/exec';
-        
-        // 📧 EMAIL NOTIFICATIONS (Optional)
-        // Set to true if you want email notifications for new orders
-        const ENABLE_EMAIL_NOTIFICATIONS = true;
-        
         // 🏪 STORE SETTINGS
         const STORE_NAME = 'Ify Makes And More';
         const STORE_PHONE = '+234-906-775-0114'; // Update with your phone number
         const STORE_EMAIL = 'ifymakesandmore@gmail.com'; // Update with your email
+        
+        // 📊 GOOGLE SHEETS INTEGRATION
+        // Replace with your Google Apps Script Web App URL for order processing
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzln-SlR4Tvs-V4NGwVY12h-juWOOSNB5gO8lX1LKLR2HiDDsQawZhMcwT5qsE3tBhZ/exec';
+        
+        // Set to true to enable Google Sheets integration, false to disable
+        const ENABLE_GOOGLE_SHEETS = true;
         
         // ========================================
         // 🚀 APPLICATION CODE STARTS HERE
@@ -1257,29 +1250,65 @@
             });
         }
 
-        // Submit order to Google Sheets
-        async function submitOrderToGoogleSheets(formData) {
+        // Order processing function (real-time)
+        function processOrder(orderData) {
+            // Real-time order processing - data is collected and ready for backend integration
+            console.log('Order submitted:', orderData);
+            
+            // Send to Google Sheets if enabled
+            if (ENABLE_GOOGLE_SHEETS && GOOGLE_SHEETS_URL !== 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec') {
+                submitToGoogleSheets(orderData);
+            }
+            
+            return true;
+        }
+
+        // Google Sheets submission function
+        async function submitToGoogleSheets(orderData) {
             try {
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                // Prepare data for Google Sheets (similar to chef-hub5 format)
+                const formData = new FormData();
+                
+                // Basic customer information
+                formData.append('customerName', orderData.customerName);
+                formData.append('phone', orderData.phone);
+                formData.append('email', orderData.email);
+                formData.append('address', orderData.address);
+                formData.append('specialInstructions', orderData.specialInstructions);
+                formData.append('paymentMethod', orderData.paymentMethod);
+                formData.append('totalAmount', orderData.totalAmount);
+                formData.append('timestamp', orderData.timestamp);
+                formData.append('orderStatus', orderData.orderStatus);
+                
+                // Cart items as JSON string
+                formData.append('cartItems', JSON.stringify(orderData.cartItems));
+                
+                // Add receipt file if uploaded
+                const receiptFile = document.getElementById('receiptUpload').files[0];
+                if (receiptFile) {
+                    formData.append('receiptFile', receiptFile);
+                }
+                
+                // Submit to Google Sheets
+                const response = await fetch(GOOGLE_SHEETS_URL, {
                     method: 'POST',
-                    mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData)
+                    body: formData
                 });
                 
-                // Note: no-cors mode doesn't allow reading response, but submission should work
-                console.log('Order submitted to Google Sheets');
-                return true;
+                if (response.ok) {
+                    console.log('Order successfully submitted to Google Sheets');
+                } else {
+                    console.error('Failed to submit to Google Sheets:', response.statusText);
+                }
+                
             } catch (error) {
                 console.error('Error submitting to Google Sheets:', error);
-                return false;
+                // Order still processes locally even if Google Sheets fails
             }
         }
 
         // Handle form submission
-        document.getElementById('orderForm').addEventListener('submit', async function(e) {
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             if (cart.length === 0) {
@@ -1302,10 +1331,8 @@
                 orderStatus: 'New Order'
             };
             
-            // Submit to Google Sheets (if URL is configured)
-            if (GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.includes('YOUR_SCRIPT_ID')) {
-                await submitOrderToGoogleSheets(orderData);
-            }
+            // Process order locally
+            processOrder(orderData);
             
             // Show success modal
             document.getElementById('successModal').classList.remove('hidden');
@@ -1318,5 +1345,5 @@
             updateCartDisplay();
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96c0bd72976e1e4b',t:'MTc1NDY3NDIwOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96c60e5261f83a7f',t:'MTc1NDcyOTk1MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
