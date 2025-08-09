@@ -169,8 +169,8 @@
         }
         
         .slider-item {
-            min-width: 350px;
-            margin-right: 30px;
+            min-width: 300px;
+            margin-right: 20px;
             flex-shrink: 0;
         }
         
@@ -317,8 +317,8 @@
         
         @media (max-width: 768px) {
             .slider-item {
-                min-width: 280px;
-                margin-right: 20px;
+                min-width: 260px;
+                margin-right: 15px;
             }
             
             .hero-title {
@@ -352,65 +352,90 @@
                         <button onclick="showPage('order')" class="btn-primary text-white px-6 py-2 rounded-full text-sm font-bold">Order Now</button>
                     </div>
                 </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-white hover:text-yellow-300 p-2 rounded-lg transition-colors duration-300">
+                        <svg id="menuIcon" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                        <svg id="closeIcon" class="w-8 h-8 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile menu dropdown -->
+            <div id="mobileMenu" class="md:hidden hidden">
+                <div class="px-4 pt-4 pb-6 space-y-2 bg-black/20 backdrop-blur-lg border-t border-white/10">
+                    <button onclick="showPage('home'); closeMobileMenu()" class="block w-full text-left text-white hover:text-yellow-300 px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:bg-white/10">🏠 Home</button>
+                    <button onclick="showPage('about'); closeMobileMenu()" class="block w-full text-left text-white hover:text-yellow-300 px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:bg-white/10">ℹ️ About</button>
+                    <button onclick="showPage('chinzobo'); closeMobileMenu()" class="block w-full text-left text-white hover:text-yellow-300 px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:bg-white/10">🍪 Food & Drinks</button>
+                    <button onclick="showPage('perfumes'); closeMobileMenu()" class="block w-full text-left text-white hover:text-yellow-300 px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:bg-white/10">🌸 Perfumes</button>
+                    <button onclick="showPage('clothing'); closeMobileMenu()" class="block w-full text-left text-white hover:text-yellow-300 px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:bg-white/10">👔 Fashion</button>
+                    <button onclick="showPage('shortlet'); closeMobileMenu()" class="block w-full text-left text-white hover:text-yellow-300 px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:bg-white/10">🏠 Accommodation</button>
+                    <button onclick="showPage('order'); closeMobileMenu()" class="block w-full btn-primary text-white px-4 py-3 rounded-lg text-base font-bold mt-4">🛒 Order Now</button>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Home Page -->
     <div id="home" class="page active">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <!-- Hero Section -->
-            <div class="text-center mb-24">
-                <h2 class="hero-title text-white mb-8 text-gradient">Welcome to Ify Makes And More</h2>
-                <p class="text-2xl text-white/90 mb-12 max-w-4xl mx-auto font-medium leading-relaxed">Your premium destination for delicious treats, luxury fragrances, stylish fashion, and comfortable stays</p>
-                <button onclick="showPage('order')" class="btn-primary text-white px-16 py-6 rounded-full text-xl font-bold shadow-2xl flex items-center justify-center mx-auto">
-                    <img src="images/cart-removebg-preview.png" alt="Shopping Cart Icon" class="w-6 h-6 mr-3 rounded">
-                    Show Cart
+            <div class="text-center mb-16">
+                <h2 class="hero-title text-white mb-6 text-gradient">Welcome to Ify Makes And More</h2>
+                <p class="text-xl text-white/90 mb-8 max-w-3xl mx-auto font-medium leading-relaxed">Your premium destination for delicious treats, luxury fragrances, stylish fashion, and comfortable stays</p>
+                <button onclick="showPage('order')" class="btn-primary text-white px-12 py-4 rounded-full text-lg font-bold shadow-2xl flex items-center justify-center mx-auto">
+                    <img src="https://via.placeholder.com/24x24/FFFFFF/F59E0B?text=Cart" alt="Shopping Cart Icon" class="w-5 h-5 mr-2 rounded">
+                    Start Shopping Now
                 </button>
             </div>
 
             <!-- Categories Grid -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="glass-card rounded-3xl p-8 cursor-pointer text-center" onclick="showPage('chinzobo')">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass-card rounded-3xl p-6 cursor-pointer text-center" onclick="showPage('chinzobo')">
                     <div class="category-icon">
-                        <img src="images/ChatGPT Image Aug 6, 2025, 12_24_02 AM.png" alt="Food & Drinks Icon" class="w-full h-full object-cover rounded-2xl">
+                        <img src="https://via.placeholder.com/80x80/F59E0B/FFFFFF?text=🍪" alt="Food & Drinks Icon" class="w-full h-full object-cover rounded-2xl">
                     </div>
-                    <h3 class="card-title text-white mb-4">Snacks & Drinks</h3>
-                    <p class="text-white/80 text-lg leading-relaxed mb-6">Delicious homemade chin chin and refreshing zobo drinks crafted with love</p>
-                    <div class="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-6 py-2 rounded-full text-sm font-bold">
+                    <h3 class="card-title text-white mb-3">Food & Drinks</h3>
+                    <p class="text-white/80 text-base leading-relaxed mb-4">Delicious homemade chin chin and refreshing zobo drinks crafted with love</p>
+                    <div class="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold">
                         Explore Menu →
                     </div>
                 </div>
 
-                <div class="glass-card rounded-3xl p-8 cursor-pointer text-center" onclick="showPage('perfumes')">
+                <div class="glass-card rounded-3xl p-6 cursor-pointer text-center" onclick="showPage('perfumes')">
                     <div class="category-icon">
-                        <img src="images/oud touch.png" alt="Perfumes Icon" class="w-full h-full object-cover rounded-2xl">
+                        <img src="https://via.placeholder.com/80x80/EC4899/FFFFFF?text=🌸" alt="Perfumes Icon" class="w-full h-full object-cover rounded-2xl">
                     </div>
-                    <h3 class="card-title text-white mb-4">Premium Perfumes</h3>
-                    <p class="text-white/80 text-lg leading-relaxed mb-6">Luxury fragrances and signature scents for every occasion and personality</p>
-                    <div class="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-6 py-2 rounded-full text-sm font-bold">
+                    <h3 class="card-title text-white mb-3">Premium Perfumes</h3>
+                    <p class="text-white/80 text-base leading-relaxed mb-4">Luxury fragrances and signature scents for every occasion and personality</p>
+                    <div class="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold">
                         Browse Collection →
                     </div>
                 </div>
 
-                <div class="glass-card rounded-3xl p-8 cursor-pointer text-center" onclick="showPage('clothing')">
+                <div class="glass-card rounded-3xl p-6 cursor-pointer text-center" onclick="showPage('clothing')">
                     <div class="category-icon">
-                        <img src="images/men suits.png" alt="Fashion Icon" class="w-full h-full object-cover rounded-2xl">
+                        <img src="https://via.placeholder.com/80x80/8B5CF6/FFFFFF?text=👔" alt="Fashion Icon" class="w-full h-full object-cover rounded-2xl">
                     </div>
-                    <h3 class="card-title text-white mb-4">Men's Fashion</h3>
-                    <p class="text-white/80 text-lg leading-relaxed mb-6">Stylish clothing, shoes, and accessories for the modern gentleman</p>
-                    <div class="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-6 py-2 rounded-full text-sm font-bold">
+                    <h3 class="card-title text-white mb-3">Men's Fashion</h3>
+                    <p class="text-white/80 text-base leading-relaxed mb-4">Stylish clothing, shoes, and accessories for the modern gentleman</p>
+                    <div class="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold">
                         Shop Fashion →
                     </div>
                 </div>
 
-                <div class="glass-card rounded-3xl p-8 cursor-pointer text-center" onclick="showPage('shortlet')">
+                <div class="glass-card rounded-3xl p-6 cursor-pointer text-center" onclick="showPage('shortlet')">
                     <div class="category-icon">
-                        <img src="images/house.png" alt="Accommodation Icon" class="w-full h-full object-cover rounded-2xl">
+                        <img src="https://via.placeholder.com/80x80/10B981/FFFFFF?text=🏠" alt="Accommodation Icon" class="w-full h-full object-cover rounded-2xl">
                     </div>
-                    <h3 class="card-title text-white mb-4">Accommodation</h3>
-                    <p class="text-white/80 text-lg leading-relaxed mb-6">Comfortable and luxurious short-term accommodation options</p>
-                    <div class="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-6 py-2 rounded-full text-sm font-bold">
+                    <h3 class="card-title text-white mb-3">Accommodation</h3>
+                    <p class="text-white/80 text-base leading-relaxed mb-4">Comfortable and luxurious short-term accommodation options</p>
+                    <div class="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold">
                         Book Stay →
                     </div>
                 </div>
@@ -420,52 +445,52 @@
 
     <!-- About Page -->
     <div id="about" class="page">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <div class="text-center mb-20">
-                <h2 class="section-title text-white mb-8">About Ify Makes And More</h2>
-                <p class="text-xl text-white/90 max-w-3xl mx-auto font-medium leading-relaxed">Discover the story behind our passion for quality products and exceptional service</p>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="text-center mb-12">
+                <h2 class="section-title text-white mb-6">About Ify Makes And More</h2>
+                <p class="text-lg text-white/90 max-w-3xl mx-auto font-medium leading-relaxed">Discover the story behind our passion for quality products and exceptional service</p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
-                <div class="glass-card rounded-3xl p-10">
-                    <h3 class="text-3xl font-bold text-white mb-8">Our Story</h3>
-                    <p class="text-white/90 text-lg leading-relaxed mb-6">
+            <div class="grid md:grid-cols-2 gap-8 items-center mb-12">
+                <div class="glass-card rounded-3xl p-8">
+                    <h3 class="text-2xl font-bold text-white mb-6">Our Story</h3>
+                    <p class="text-white/90 text-base leading-relaxed mb-4">
                         Founded with a passion for bringing quality and joy to everyday life, Ify Makes And More started as a small venture dedicated to creating delicious homemade treats and has grown into a comprehensive lifestyle brand.
                     </p>
-                    <p class="text-white/90 text-lg leading-relaxed">
+                    <p class="text-white/90 text-base leading-relaxed">
                         From our signature chin chin and refreshing zobo drinks to premium perfumes, stylish men's fashion, and comfortable accommodation, we're committed to excellence in everything we do.
                     </p>
                 </div>
-                <div class="glass-card rounded-3xl p-10 text-center">
-                    <div class="w-32 h-32 mx-auto mb-8 rounded-full overflow-hidden">
-                        <img src="https://via.placeholder.com/128x128/F59E0B/FFFFFF?text=Chef" alt="Chef Image" class="w-full h-full object-cover">
+                <div class="glass-card rounded-3xl p-8 text-center">
+                    <div class="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden">
+                        <img src="https://via.placeholder.com/96x96/F59E0B/FFFFFF?text=Chef" alt="Chef Image" class="w-full h-full object-cover">
                     </div>
-                    <h4 class="text-2xl font-bold text-white mb-6">Quality First</h4>
-                    <p class="text-white/90 text-lg leading-relaxed">Every product is crafted with care, attention to detail, and a commitment to excellence</p>
+                    <h4 class="text-xl font-bold text-white mb-4">Quality First</h4>
+                    <p class="text-white/90 text-base leading-relaxed">Every product is crafted with care, attention to detail, and a commitment to excellence</p>
                 </div>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass-card rounded-3xl p-8 text-center">
-                    <div class="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden">
-                        <img src="images/mission-removebg-preview.png" alt="Mission Icon" class="w-full h-full object-cover">
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass-card rounded-3xl p-6 text-center">
+                    <div class="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden">
+                        <img src="https://via.placeholder.com/80x80/EF4444/FFFFFF?text=Target" alt="Mission Icon" class="w-full h-full object-cover">
                     </div>
-                    <h4 class="text-xl font-bold text-white mb-4">Our Mission</h4>
-                    <p class="text-white/90 leading-relaxed">To provide exceptional products and services that bring joy and satisfaction to our customers' lives.</p>
+                    <h4 class="text-lg font-bold text-white mb-3">Our Mission</h4>
+                    <p class="text-white/90 text-sm leading-relaxed">To provide exceptional products and services that bring joy and satisfaction to our customers' lives.</p>
                 </div>
-                <div class="glass-card rounded-3xl p-8 text-center">
-                    <div class="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden">
-                        <img src="images/values-removebg-preview.png" alt="Values Icon" class="w-full h-full object-cover">
+                <div class="glass-card rounded-3xl p-6 text-center">
+                    <div class="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden">
+                        <img src="https://via.placeholder.com/80x80/3B82F6/FFFFFF?text=Diamond" alt="Values Icon" class="w-full h-full object-cover">
                     </div>
-                    <h4 class="text-xl font-bold text-white mb-4">Our Values</h4>
-                    <p class="text-white/90 leading-relaxed">Quality, integrity, customer satisfaction, and continuous innovation in everything we do.</p>
+                    <h4 class="text-lg font-bold text-white mb-3">Our Values</h4>
+                    <p class="text-white/90 text-sm leading-relaxed">Quality, integrity, customer satisfaction, and continuous innovation in everything we do.</p>
                 </div>
-                <div class="glass-card rounded-3xl p-8 text-center">
-                    <div class="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden">
-                        <img src="images/vision-removebg-preview.png" alt="Vision Icon" class="w-full h-full object-cover">
+                <div class="glass-card rounded-3xl p-6 text-center">
+                    <div class="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden">
+                        <img src="https://via.placeholder.com/80x80/F59E0B/FFFFFF?text=Star" alt="Vision Icon" class="w-full h-full object-cover">
                     </div>
-                    <h4 class="text-xl font-bold text-white mb-4">Our Vision</h4>
-                    <p class="text-white/90 leading-relaxed">To become the leading lifestyle brand known for quality products and exceptional customer experience.</p>
+                    <h4 class="text-lg font-bold text-white mb-3">Our Vision</h4>
+                    <p class="text-white/90 text-sm leading-relaxed">To become the leading lifestyle brand known for quality products and exceptional customer experience.</p>
                 </div>
             </div>
         </div>
@@ -473,48 +498,48 @@
 
     <!-- Chin Chin & Zobo Page -->
     <div id="chinzobo" class="page">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <div class="text-center mb-16">
-                <h2 class="section-title text-white mb-6 flex items-center justify-center gap-4">
-                    <img src="images/small.png" alt="Food Icon" class="w-12 h-12 rounded-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="text-center mb-10">
+                <h2 class="section-title text-white mb-4 flex items-center justify-center gap-3">
+                    <img src="https://via.placeholder.com/40x40/F59E0B/FFFFFF?text=🍪" alt="Food Icon" class="w-10 h-10 rounded-lg">
                     Food & Drinks
-                    <img src="images/zobo.jpg" alt="Drinks Icon" class="w-12 h-12 rounded-lg">
+                    <img src="https://via.placeholder.com/40x40/DC2626/FFFFFF?text=🥤" alt="Drinks Icon" class="w-10 h-10 rounded-lg">
                 </h2>
-                <p class="text-xl text-white/90 font-medium">Delicious homemade treats and refreshing drinks made with love</p>
+                <p class="text-lg text-white/90 font-medium">Delicious homemade treats and refreshing drinks made with love</p>
             </div>
             
             <!-- Slider Controls -->
-            <div class="flex justify-center mb-12">
+            <div class="flex justify-center mb-8">
                 <div class="glass-card rounded-2xl p-2 flex">
-                    <button onclick="slideProducts('chinzobo', -1)" class="btn-secondary text-white px-8 py-4 rounded-xl font-semibold mr-2">‹ Previous</button>
-                    <button onclick="slideProducts('chinzobo', 1)" class="btn-secondary text-white px-8 py-4 rounded-xl font-semibold">Next ›</button>
+                    <button onclick="slideProducts('chinzobo', -1)" class="btn-secondary text-white px-6 py-3 rounded-xl font-semibold mr-2 text-sm">‹ Previous</button>
+                    <button onclick="slideProducts('chinzobo', 1)" class="btn-secondary text-white px-6 py-3 rounded-xl font-semibold text-sm">Next ›</button>
                 </div>
             </div>
             
             <div class="slider-container" id="chinzobo-slider">
                 <div class="slider-track" id="chinzobo-track">
                     <div class="slider-item">
-                        <div class="product-card rounded-3xl p-8 shadow-2xl">
-                            <div class="w-full h-64 bg-gradient-to-br from-yellow-200 to-orange-300 rounded-2xl mb-8 p-4 flex items-center justify-center">
-                                <img src="images/small.png" alt="Chin Chin Small" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
+                        <div class="product-card rounded-3xl p-6 shadow-2xl">
+                            <div class="w-full h-48 bg-gradient-to-br from-yellow-200 to-orange-300 rounded-2xl mb-6 p-3 flex items-center justify-center">
+                                <img src="https://via.placeholder.com/280x160/FCD34D/FFFFFF?text=Chin+Chin+Small" alt="Chin Chin Small" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
                             </div>
-                            <h3 class="card-title text-gray-800 mb-4 text-center">Chin Chin - Small Pack</h3>
-                            <div class="text-center mb-6">
-                                <span class="price-tag">₦1,000</span>
+                            <h3 class="text-lg font-bold text-gray-800 mb-3 text-center">Chin Chin - Small Pack</h3>
+                            <div class="text-center mb-4">
+                                <span class="price-tag text-base">₦1,000</span>
                             </div>
-                            <div class="quantity-control flex items-center justify-center mb-8">
-                                <button onclick="changeQuantity('chinSmall', -1)" class="quantity-btn rounded-l-xl">-</button>
-                                <span id="chinSmall" class="px-8 py-3 min-w-20 text-center font-bold text-xl bg-white">0</span>
-                                <button onclick="changeQuantity('chinSmall', 1)" class="quantity-btn rounded-r-xl">+</button>
+                            <div class="quantity-control flex items-center justify-center mb-6">
+                                <button onclick="changeQuantity('chinSmall', -1)" class="quantity-btn rounded-l-xl px-3 py-2">-</button>
+                                <span id="chinSmall" class="px-6 py-2 min-w-16 text-center font-bold text-lg bg-white">0</span>
+                                <button onclick="changeQuantity('chinSmall', 1)" class="quantity-btn rounded-r-xl px-3 py-2">+</button>
                             </div>
-                            <button onclick="addToCartWithQuantity('Chin Chin - Small', 1000, 'chinSmall')" class="w-full btn-secondary text-white py-4 rounded-2xl font-bold text-lg">Add to Cart</button>
+                            <button onclick="addToCartWithQuantity('Chin Chin - Small', 1000, 'chinSmall')" class="w-full btn-secondary text-white py-3 rounded-2xl font-bold text-base">Add to Cart</button>
                         </div>
                     </div>
 
                     <div class="slider-item">
                         <div class="product-card rounded-3xl p-8 shadow-2xl">
                             <div class="w-full h-64 bg-gradient-to-br from-yellow-200 to-orange-300 rounded-2xl mb-8 p-4 flex items-center justify-center">
-                                <img src="images/medium.png" alt="Chin Chin Medium" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
+                                <img src="https://via.placeholder.com/300x200/FCD34D/FFFFFF?text=Chin+Chin+Medium" alt="Chin Chin Medium" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
                             </div>
                             <h3 class="card-title text-gray-800 mb-4 text-center">Chin Chin - Medium Pack</h3>
                             <div class="text-center mb-6">
@@ -532,7 +557,7 @@
                     <div class="slider-item">
                         <div class="product-card rounded-3xl p-8 shadow-2xl">
                             <div class="w-full h-64 bg-gradient-to-br from-yellow-200 to-orange-300 rounded-2xl mb-8 p-4 flex items-center justify-center">
-                                <img src="images/big.png" alt="Chin Chin Large" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
+                                <img src="https://via.placeholder.com/300x200/FCD34D/FFFFFF?text=Chin+Chin+Large" alt="Chin Chin Large" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
                             </div>
                             <h3 class="card-title text-gray-800 mb-4 text-center">Chin Chin - Large Pack</h3>
                             <div class="text-center mb-6">
@@ -550,7 +575,7 @@
                     <div class="slider-item">
                         <div class="product-card rounded-3xl p-8 shadow-2xl">
                             <div class="w-full h-64 bg-gradient-to-br from-red-200 to-purple-300 rounded-2xl mb-8 p-4 flex items-center justify-center">
-                                <img src="images/zobo.jpg" alt="Zobo Drink" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
+                                <img src="https://via.placeholder.com/300x200/DC2626/FFFFFF?text=Zobo+Drink" alt="Zobo Drink" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
                             </div>
                             <h3 class="card-title text-gray-800 mb-4 text-center">Fresh Zobo Drink</h3>
                             <div class="text-center mb-6">
@@ -574,9 +599,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <div class="text-center mb-16">
                 <h2 class="section-title text-white mb-6 flex items-center justify-center gap-4">
-                    <img src="images/oud touch.png" alt="Perfume" class="w-12 h-12 rounded-lg">
+                    <img src="https://via.placeholder.com/48x48/EC4899/FFFFFF?text=🌸" alt="Flower Icon" class="w-12 h-12 rounded-lg">
                     Premium Perfumes
-                    <img src="images/Afnan Supremacy.png" alt="Perfume" class="w-12 h-12 rounded-lg">
+                    <img src="https://via.placeholder.com/48x48/F59E0B/FFFFFF?text=✨" alt="Sparkle Icon" class="w-12 h-12 rounded-lg">
                 </h2>
                 <p class="text-xl text-white/90 font-medium">Luxury fragrances and signature scents for every occasion</p>
             </div>
@@ -594,54 +619,54 @@
                     <div class="slider-item">
                         <div class="product-card rounded-3xl p-8 shadow-2xl">
                             <div class="w-full h-64 bg-gradient-to-br from-pink-200 to-purple-300 rounded-2xl mb-8 p-4 flex items-center justify-center">
-                                <img src="images/oud touch.png" alt="Oud touch 100ml" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
+                                <img src="https://via.placeholder.com/300x200/EC4899/FFFFFF?text=Floral+Essence" alt="Floral Essence Perfume" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
                             </div>
-                            <h3 class="card-title text-gray-800 mb-4 text-center">Oud Touch 100ml</h3>
+                            <h3 class="card-title text-gray-800 mb-4 text-center">Floral Essence</h3>
                             <div class="text-center mb-6">
-                                <span class="price-tag">₦37,500</span>
+                                <span class="price-tag">₦8,500</span>
                             </div>
                             <div class="quantity-control flex items-center justify-center mb-8">
-                                <button onclick="changeQuantity('oudtouch', -1)" class="quantity-btn rounded-l-xl">-</button>
-                                <span id="oudtouch" class="px-8 py-3 min-w-20 text-center font-bold text-xl bg-white">0</span>
-                                <button onclick="changeQuantity('oudtouch', 1)" class="quantity-btn rounded-r-xl">+</button>
+                                <button onclick="changeQuantity('floralEssence', -1)" class="quantity-btn rounded-l-xl">-</button>
+                                <span id="floralEssence" class="px-8 py-3 min-w-20 text-center font-bold text-xl bg-white">0</span>
+                                <button onclick="changeQuantity('floralEssence', 1)" class="quantity-btn rounded-r-xl">+</button>
                             </div>
-                            <button onclick="addToCartWithQuantity('Oud Touch Perfume', 37500, 'oudtouch')" class="w-full btn-secondary text-white py-4 rounded-2xl font-bold text-lg">Add to Cart</button>
+                            <button onclick="addToCartWithQuantity('Floral Essence Perfume', 8500, 'floralEssence')" class="w-full btn-secondary text-white py-4 rounded-2xl font-bold text-lg">Add to Cart</button>
                         </div>
                     </div>
 
                     <div class="slider-item">
                         <div class="product-card rounded-3xl p-8 shadow-2xl">
                             <div class="w-full h-64 bg-gradient-to-br from-blue-200 to-indigo-300 rounded-2xl mb-8 p-4 flex items-center justify-center">
-                                <img src="images/gio gio.png" alt="GioGio Black" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
+                                <img src="https://via.placeholder.com/300x200/3B82F6/FFFFFF?text=Ocean+Breeze" alt="Ocean Breeze Perfume" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
                             </div>
-                            <h3 class="card-title text-gray-800 mb-4 text-center">GioGio Black 100ml</h3>
+                            <h3 class="card-title text-gray-800 mb-4 text-center">Ocean Breeze</h3>
                             <div class="text-center mb-6">
-                                <span class="price-tag">₦29,500</span>
+                                <span class="price-tag">₦7,200</span>
                             </div>
                             <div class="quantity-control flex items-center justify-center mb-8">
-                                <button onclick="changeQuantity('giogioblack', -1)" class="quantity-btn rounded-l-xl">-</button>
-                                <span id="giogioblack" class="px-8 py-3 min-w-20 text-center font-bold text-xl bg-white">0</span>
-                                <button onclick="changeQuantity('giogioblack', 1)" class="quantity-btn rounded-r-xl">+</button>
+                                <button onclick="changeQuantity('oceanBreeze', -1)" class="quantity-btn rounded-l-xl">-</button>
+                                <span id="oceanBreeze" class="px-8 py-3 min-w-20 text-center font-bold text-xl bg-white">0</span>
+                                <button onclick="changeQuantity('oceanBreeze', 1)" class="quantity-btn rounded-r-xl">+</button>
                             </div>
-                            <button onclick="addToCartWithQuantity('GioGio Black Perfume', 29500, 'giogioblack')" class="w-full btn-secondary text-white py-4 rounded-2xl font-bold text-lg">Add to Cart</button>
+                            <button onclick="addToCartWithQuantity('Ocean Breeze Perfume', 7200, 'oceanBreeze')" class="w-full btn-secondary text-white py-4 rounded-2xl font-bold text-lg">Add to Cart</button>
                         </div>
                     </div>
 
                     <div class="slider-item">
                         <div class="product-card rounded-3xl p-8 shadow-2xl">
                             <div class="w-full h-64 bg-gradient-to-br from-amber-200 to-orange-300 rounded-2xl mb-8 p-4 flex items-center justify-center">
-                                <img src="images/Afnan Supremacy.png" alt="Afnan Supremacy Perfume 100ml" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
+                                <img src="https://via.placeholder.com/300x200/F59E0B/FFFFFF?text=Golden+Luxury" alt="Golden Luxury Perfume" class="max-w-full max-h-full object-contain rounded-xl hover:scale-105 transition-transform duration-300">
                             </div>
-                            <h3 class="card-title text-gray-800 mb-4 text-center">Afnan Supremacy 100ml</h3>
+                            <h3 class="card-title text-gray-800 mb-4 text-center">Golden Luxury</h3>
                             <div class="text-center mb-6">
-                                <span class="price-tag">₦65,000</span>
+                                <span class="price-tag">₦12,000</span>
                             </div>
                             <div class="quantity-control flex items-center justify-center mb-8">
-                                <button onclick="changeQuantity('afnansupremacy', -1)" class="quantity-btn rounded-l-xl">-</button>
-                                <span id="afnansupremacy" class="px-8 py-3 min-w-20 text-center font-bold text-xl bg-white">0</span>
-                                <button onclick="changeQuantity('afnansupremacy', 1)" class="quantity-btn rounded-r-xl">+</button>
+                                <button onclick="changeQuantity('goldenLuxury', -1)" class="quantity-btn rounded-l-xl">-</button>
+                                <span id="goldenLuxury" class="px-8 py-3 min-w-20 text-center font-bold text-xl bg-white">0</span>
+                                <button onclick="changeQuantity('goldenLuxury', 1)" class="quantity-btn rounded-r-xl">+</button>
                             </div>
-                            <button onclick="addToCartWithQuantity('Afnan Supremacy Perfume', 65000, 'afnansupremacy')" class="w-full btn-secondary text-white py-4 rounded-2xl font-bold text-lg">Add to Cart</button>
+                            <button onclick="addToCartWithQuantity('Golden Luxury Perfume', 12000, 'goldenLuxury')" class="w-full btn-secondary text-white py-4 rounded-2xl font-bold text-lg">Add to Cart</button>
                         </div>
                     </div>
                 </div>
@@ -654,9 +679,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <div class="text-center mb-16">
                 <h2 class="section-title text-white mb-6 flex items-center justify-center gap-4">
-                    <img src="images/men suits.png" alt="Shirt Icon" class="w-12 h-12 rounded-lg">
+                    <img src="https://via.placeholder.com/48x48/8B5CF6/FFFFFF?text=👔" alt="Shirt Icon" class="w-12 h-12 rounded-lg">
                     Men's Fashion
-                    <img src="images/men suits.png" alt="Shoe Icon" class="w-12 h-12 rounded-lg">
+                    <img src="https://via.placeholder.com/48x48/92400E/FFFFFF?text=👞" alt="Shoe Icon" class="w-12 h-12 rounded-lg">
                 </h2>
                 <p class="text-xl text-white/90 font-medium">Stylish clothing, shoes, and accessories for the modern gentleman</p>
             </div>
@@ -770,9 +795,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <div class="text-center mb-16">
                 <h2 class="section-title text-white mb-6 flex items-center justify-center gap-4">
-                    <img src="images/house.png" alt="House Icon" class="w-12 h-12 rounded-lg">
+                    <img src="https://via.placeholder.com/48x48/10B981/FFFFFF?text=🏠" alt="House Icon" class="w-12 h-12 rounded-lg">
                     Premium Accommodation
-                    <img src="images/house.png" alt="Home Icon" class="w-12 h-12 rounded-lg">
+                    <img src="https://via.placeholder.com/48x48/0EA5E9/FFFFFF?text=🏡" alt="Home Icon" class="w-12 h-12 rounded-lg">
                 </h2>
                 <p class="text-xl text-white/90 font-medium">Comfortable and luxurious short-term accommodation options</p>
             </div>
@@ -841,20 +866,20 @@
 
     <!-- Order Form Page -->
     <div id="order" class="page">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div class="text-center mb-12">
-                <h2 class="section-title text-white mb-6">🛒 Your Order</h2>
-                <p class="text-xl text-white/90 font-medium">Review your items and complete your purchase</p>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="text-center mb-10">
+                <h2 class="section-title text-white mb-4">🛒 Your Order</h2>
+                <p class="text-lg text-white/90 font-medium">Review your items and complete your purchase</p>
             </div>
             
             <!-- Cart Items -->
-            <div class="glass-card rounded-3xl p-10 shadow-2xl mb-10">
-                <h3 class="text-3xl font-bold text-white mb-8">Cart Items</h3>
-                <div id="cartItems" class="space-y-6">
-                    <p class="text-white/80 text-lg">Your cart is empty. Add items from our categories!</p>
+            <div class="glass-card rounded-3xl p-8 shadow-2xl mb-8">
+                <h3 class="text-2xl font-bold text-white mb-6">Cart Items</h3>
+                <div id="cartItems" class="space-y-4">
+                    <p class="text-white/80 text-base">Your cart is empty. Add items from our categories!</p>
                 </div>
-                <div class="border-t border-white/20 pt-8 mt-8">
-                    <div class="flex justify-between items-center text-3xl font-bold text-white">
+                <div class="border-t border-white/20 pt-6 mt-6">
+                    <div class="flex justify-between items-center text-2xl font-bold text-white">
                         <span>Total:</span>
                         <span id="cartTotal" class="text-gradient">₦0</span>
                     </div>
@@ -862,40 +887,40 @@
             </div>
 
             <!-- Order Form -->
-            <div class="glass-card rounded-3xl p-10 shadow-2xl">
-                <h3 class="text-3xl font-bold text-white mb-10">Customer Information</h3>
-                <form id="orderForm" class="space-y-8">
-                    <div class="grid md:grid-cols-2 gap-8">
+            <div class="glass-card rounded-3xl p-8 shadow-2xl">
+                <h3 class="text-2xl font-bold text-white mb-8">Customer Information</h3>
+                <form id="orderForm" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
                         <div>
-                            <label class="block text-sm font-semibold text-white mb-3">Full Name</label>
-                            <input type="text" required class="form-input w-full">
+                            <label class="block text-sm font-semibold text-white mb-2">Full Name</label>
+                            <input type="text" name="customerName" required class="form-input w-full">
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold text-white mb-3">Phone Number</label>
-                            <input type="tel" required class="form-input w-full">
+                            <label class="block text-sm font-semibold text-white mb-2">Phone Number</label>
+                            <input type="tel" name="phone" required class="form-input w-full">
                         </div>
                     </div>
                     
                     <div>
-                        <label class="block text-sm font-semibold text-white mb-3">Email Address</label>
-                        <input type="email" required class="form-input w-full">
+                        <label class="block text-sm font-semibold text-white mb-2">Email Address</label>
+                        <input type="email" name="email" required class="form-input w-full">
                     </div>
                     
                     <div>
-                        <label class="block text-sm font-semibold text-white mb-3">Delivery Address</label>
-                        <textarea required rows="3" class="form-input w-full"></textarea>
+                        <label class="block text-sm font-semibold text-white mb-2">Delivery Address</label>
+                        <textarea name="address" required rows="2" class="form-input w-full"></textarea>
                     </div>
                     
                     <div>
-                        <label class="block text-sm font-semibold text-white mb-3">Special Instructions</label>
-                        <textarea rows="2" class="form-input w-full" placeholder="Any special requests or delivery instructions..."></textarea>
+                        <label class="block text-sm font-semibold text-white mb-2">Special Instructions</label>
+                        <textarea name="specialInstructions" rows="2" class="form-input w-full" placeholder="Any special requests or delivery instructions..."></textarea>
                     </div>
                     
                     <div>
-                        <label class="block text-sm font-semibold text-white mb-6">Payment Method</label>
-                        <div class="space-y-6">
+                        <label class="block text-sm font-semibold text-white mb-4">Payment Method</label>
+                        <div class="space-y-4">
                             <div class="payment-option">
-                                <div class="flex items-center mb-4">
+                                <div class="flex items-center mb-3">
                                     <input type="radio" id="bankTransfer" name="paymentMethod" value="bank-transfer" required class="h-5 w-5 text-yellow-400 focus:ring-yellow-400 border-white/20" onchange="toggleBankDetails()">
                                     <label for="bankTransfer" class="ml-4 flex items-center text-lg font-semibold text-white cursor-pointer">
                                         <img src="https://via.placeholder.com/24x24/3B82F6/FFFFFF?text=Bank" alt="Bank Icon" class="w-6 h-6 mr-2 rounded">
@@ -981,6 +1006,33 @@
     </div>
 
     <script>
+        // ========================================
+        // 🔧 CONFIGURATION SECTION
+        // ========================================
+        
+        // 📊 GOOGLE SHEETS INTEGRATION
+        // Paste your Google Apps Script Web App URL below:
+        // To get this URL:
+        // 1. Go to script.google.com
+        // 2. Open your Apps Script project
+        // 3. Click "Deploy" → "New Deployment"
+        // 4. Choose "Web app" and copy the URL
+        
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxAx-7LGqkAmDDLk-KWCWOkIgn5OiLWew6UVMbH8HkG3PPpvZ-eH8rsVQ7FOpEZfrk/exec';
+        
+        // 📧 EMAIL NOTIFICATIONS (Optional)
+        // Set to true if you want email notifications for new orders
+        const ENABLE_EMAIL_NOTIFICATIONS = true;
+        
+        // 🏪 STORE SETTINGS
+        const STORE_NAME = 'Ify Makes And More';
+        const STORE_PHONE = '+234-906-775-0114'; // Update with your phone number
+        const STORE_EMAIL = 'ifymakesandmore@gmail.com'; // Update with your email
+        
+        // ========================================
+        // 🚀 APPLICATION CODE STARTS HERE
+        // ========================================
+        
         let cart = [];
         let cartTotal = 0;
         let sliderPositions = {
@@ -989,6 +1041,32 @@
             'clothing': 0,
             'shortlet': 0
         };
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = document.getElementById('menuIcon');
+            const closeIcon = document.getElementById('closeIcon');
+            
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            }
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = document.getElementById('menuIcon');
+            const closeIcon = document.getElementById('closeIcon');
+            
+            mobileMenu.classList.add('hidden');
+            menuIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+        }
 
         function showPage(pageId) {
             // Hide all pages
@@ -1007,7 +1085,7 @@
         function slideProducts(category, direction) {
             const track = document.getElementById(category + '-track');
             const items = track.querySelectorAll('.slider-item');
-            const itemWidth = 380; // 350px + 30px margin
+            const itemWidth = 320; // 300px + 20px margin
             
             sliderPositions[category] += direction * itemWidth;
             
@@ -1179,13 +1257,54 @@
             });
         }
 
+        // Submit order to Google Sheets
+        async function submitOrderToGoogleSheets(formData) {
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                // Note: no-cors mode doesn't allow reading response, but submission should work
+                console.log('Order submitted to Google Sheets');
+                return true;
+            } catch (error) {
+                console.error('Error submitting to Google Sheets:', error);
+                return false;
+            }
+        }
+
         // Handle form submission
-        document.getElementById('orderForm').addEventListener('submit', function(e) {
+        document.getElementById('orderForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             if (cart.length === 0) {
                 alert('Please add items to your cart before placing an order.');
                 return;
+            }
+            
+            // Collect form data
+            const formData = new FormData(this);
+            const orderData = {
+                timestamp: new Date().toISOString(),
+                customerName: formData.get('customerName') || this.querySelector('input[type="text"]').value,
+                phone: formData.get('phone') || this.querySelector('input[type="tel"]').value,
+                email: formData.get('email') || this.querySelector('input[type="email"]').value,
+                address: formData.get('address') || this.querySelector('textarea').value,
+                specialInstructions: formData.get('specialInstructions') || this.querySelectorAll('textarea')[1]?.value || '',
+                paymentMethod: formData.get('paymentMethod'),
+                cartItems: cart,
+                totalAmount: cartTotal,
+                orderStatus: 'New Order'
+            };
+            
+            // Submit to Google Sheets (if URL is configured)
+            if (GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.includes('YOUR_SCRIPT_ID')) {
+                await submitOrderToGoogleSheets(orderData);
             }
             
             // Show success modal
@@ -1199,5 +1318,5 @@
             updateCartDisplay();
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96b82809732ac95d',t:'MTc1NDU4NDIwMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96c0bd72976e1e4b',t:'MTc1NDY3NDIwOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
